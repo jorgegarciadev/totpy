@@ -1,10 +1,9 @@
 ## Totpy
 
-![Screenshot.png](https://raw.githubusercontent.com/jorgegarciadev/totpy/master/img/Screenshot.png)
-
-
 ### Description
-Totpy is CLI TOTP generator and managemet tool for Linux and MacOS. Can generate a TOTP token from a given secret key or from one stored in the configuration file. The secrets can be added to the configuration file using a secret key or the QR code image of a secret key. The default configuration file is stored in ```~/.local/config/totpy```, but can be overriden with a given one.
+Totpy is CLI TOTP generator and management tool for Linux and MacOS. Can generate a TOTP token from a given secret key or from one stored in the configuration file. The secrets can be added to the configuration file using a secret key or the QR code image of a secret key. The default configuration file is stored in ```~/.local/config/totpy```, but can be overriden with a given one.
+
+<div style="text-align:center"><img src="https://raw.githubusercontent.com/jorgegarciadev/totpy/master/img/Screenshot.png" /></div>
 
 ### Instalation
 Totpy requires the follow packages:
@@ -17,17 +16,17 @@ Totpy requires the follow packages:
 
 Totpy can be installed from this repository using pip:
 
-```pip install git+https://github.com/jorgegarciadev/totpy.git```
+```$ pip install git+https://github.com/jorgegarciadev/totpy.git```
 
 From the Python Package Index using pip:
 
-```pip install totpy```
+```$ pip install totpy```
 
 Or cloning this repository and running setup.py:
 
 ```
-git clone https://github.com/jorgegarciadev/totpy.git
-python setup.py install --user
+$ git clone https://github.com/jorgegarciadev/totpy.git
+$ python setup.py install --user
 ```
 
 in all cases It installs the module and the CLI tool.
@@ -36,20 +35,20 @@ in all cases It installs the module and the CLI tool.
 
 ### ```-c --conf PATH```
 
-Overrides the configuration stored in ```~/.local/config/totpy/config.json``` ans uses the new file from now on. Check ```config.example``` for more info.
+Overrides the configuration stored in ```~/.local/config/totpy/config.json``` and uses the new file from now on. Check ```config.example``` for more info.
 
-```totpy -c conf.json foo```
+```$ totpy -c conf.json foo```
 
 
 ### ```-a --add NAME```
 
 Adds a new secret to the config file. The new secret can be added using a QR code image:
 
-```totpy -a foo -q foo.png```
+```$ totpy -a foo -q foo.png```
 
-or passing directly the secret using the ```-s``` option:
+Or passing directly the secret using the ```-s``` option:
 
-```totpy -a foo -s JBSWY3DPEHPK3PXP```
+```$ totpy -a foo -s JBSWY3DPEHPK3PXP```
 
 If the entry already exists it will be overwriten.
 
@@ -58,24 +57,24 @@ If the entry already exists it will be overwriten.
 
 Generates a QR code for the given name and prints it in the terminal.
 
-```totpy -qr foo```
+```$ totpy -qr foo```
 
-![Screenshot.png](https://raw.githubusercontent.com/jorgegarciadev/totpy/master/img/Screenshot2.png)
+<div style="text-align:center"><img src="https://raw.githubusercontent.com/jorgegarciadev/totpy/master/img/Screenshot2.png" /></div>
 
 
 ### ```-l --list```
 
 Shows all the entries' names in the configuration file.
 
-```totpy -l```
+```$ totpy -l```
 
 
 ### ```-s --secret```
 
-Generates a TOTP tocken for the given secret key.
+Generates a TOTP token for the given secret key.
 
 ```
-totpy -s JBSWY3DPEHPK3PXP
+$ totpy -s JBSWY3DPEHPK3PXP
 235467
 ```
 
@@ -85,12 +84,12 @@ totpy -s JBSWY3DPEHPK3PXP
 Generates a TOTP token using the secret stored in the configuration file for the given name.
 
 ```
-totpy granada
+$ totpy granada
 099299
 ```
 
 
-##Totpy module
+## Totpy module
 
 Totpy includes three classes:
 
@@ -100,7 +99,7 @@ Totpy includes three classes:
 
 ### Totp class
 
-This can be imported in your project and used. this is the source code:
+This can be imported in your project and used. This is the source code:
 
 ```python
 class Totp(object):
