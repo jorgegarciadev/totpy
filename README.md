@@ -3,7 +3,7 @@
 ![Screenshot.png](https://raw.githubusercontent.com/jorgegarciadev/totpy/master/Screenshot.png)
 
 
-###Description
+### Description
 Totpy is CLI TOTP generator and managemet tool for Linux and MacOS. Can generate a TOTP token from a given secret key or from one stored in the configuration file. The secrets can be added to the configuration file using a secret key or the QR code image of a secret key. The default configuration file is stored in ```~/.local/config/totpy```, but can be overriden with a given one.
 
 ### Instalation
@@ -34,14 +34,14 @@ in all cases It installs the module and the CLI tool.
 
 ### Usage
 
-```-c --conf PATH```
+### ```-c --conf PATH```
 
 Overrides the configuration stored in ```~/.local/config/totpy/config.json``` ans uses the new file from now on. Check ```config.example``` for more info.
 
 ```totpy -c conf.json foo```
 
 
-```-a --add NAME```
+### ```-a --add NAME```
 
 Adds a new secret to the config file. The new secret can be added using a QR code image:
 
@@ -54,7 +54,7 @@ or passing directly the secret using the ```-s``` option:
 If the entry already exists it will be overwriten.
 
 
-```-qr NAME```
+### ```-qr NAME```
 
 Generates a QR code for the given name and prints it in the terminal.
 
@@ -63,14 +63,14 @@ Generates a QR code for the given name and prints it in the terminal.
 ![Screenshot.png](https://raw.githubusercontent.com/jorgegarciadev/totpy/master/Screenshot.png)
 
 
-```-l --list```
+### ```-l --list```
 
 Shows all the entries' names in the configuration file.
 
 ```totpy -l```
 
 
-```-s --secret```
+### ```-s --secret```
 
 Generates a TOTP tocken for the given secret key.
 
@@ -80,7 +80,7 @@ totpy -s JBSWY3DPEHPK3PXP
 ```
 
 
-```NAME```
+### ```NAME```
 
 Generates a TOTP token using the secret stored in the configuration file for the given name.
 
