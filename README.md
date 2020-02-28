@@ -1,6 +1,6 @@
 ## Totpy
 
-![Screenshot.png](https://raw.githubusercontent.com/jorgegarciadev/totpy/master/Screenshot.png)
+![Screenshot.png](https://raw.githubusercontent.com/jorgegarciadev/totpy/master/img/Screenshot.png)
 
 
 ### Description
@@ -60,7 +60,7 @@ Generates a QR code for the given name and prints it in the terminal.
 
 ```totpy -qr foo```
 
-![Screenshot.png](https://raw.githubusercontent.com/jorgegarciadev/totpy/master/Screenshot.png)
+![Screenshot.png](https://raw.githubusercontent.com/jorgegarciadev/totpy/master/img/Screenshot2.png)
 
 
 ### ```-l --list```
