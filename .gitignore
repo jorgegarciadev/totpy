@@ -1,3 +1,5 @@
 dist
 totpy.egg-info
+releases
+build
 config.json

@@ -53,6 +53,12 @@ Or passing directly the secret using the ```-s``` option:
 If the entry already exists it will be overwriten.
 
 
+### ```-r --remove NAME```
+
+Removes the given entry from the configutarion file.
+
+```$ totpy -r foo ```
+
 ### ```-qr NAME```
 
 Generates a QR code for the given name and prints it in the terminal.

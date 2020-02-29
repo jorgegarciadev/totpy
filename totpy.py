@@ -43,11 +43,13 @@ class Base(object):
 
   def createConfigurationFile(self):
     base = os.path.expanduser("~") + BASE
-    if not base:
+    print(base)
+    if not os.path.exists(base):
       os.mkdir(base)
 
     with open(self.config_file, "w") as f:
       f.write("{}")
+    self.loadConfiguration()
 
   def loadConfiguration(self):
     with open(self.config_file) as f:
@@ -104,6 +106,12 @@ class Totpy(Base):
     secret = qr[0][0].decode("utf-8")
     self.addSecret(name, secret)
 
+  def removeSecret(self, name):
+    for item in self.config:
+      if name == item:
+        self.config.pop(name)
+        self.saveConfiguration()
+
   def getQr(self, name):
     for item in self.config:
       if name == item:
@@ -114,16 +122,17 @@ def main():
   CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
   @click.command(context_settings=CONTEXT_SETTINGS)
-  @click.option('-s', '--secret', type=str, metavar='SECRET',  help="Returns the TOTP token for the given secret.")
-  @click.option('-qr', type=str, metavar="NAME", help="Print secret's QR code for the given entry.")
-  @click.option('-a', '--add', metavar='NAME', type=str, help="Add new TOTP to config file using a secret or a QR code. Use with -s or -q")
+  @click.option('-s', '--secret', type=str, metavar='SECRET',  help="Returns the TOTP token for the given secret. Used with -add, provides the secret for the new entry")
+  @click.option('-qr', type=str, metavar="NAME", help="Prints secret's QR code for the given entry.")
+  @click.option('-a', '--add', metavar='NAME', type=str, help="Adds new TOTP to config file using a secret or a QR code. Use with -s or -q")
+  @click.option('-r', '--remove', metavar='NAME', type=str, help="Removes the given entry from the configutarion file.")
   @click.option('-q', type=str, metavar='PATH', help="Used with --add. Path to the QR code png image.")
-  @click.option('-l', '--list', 'listing', is_flag=True, help="Display all entries' names in the config file.")
+  @click.option('-l', '--list', 'listing', is_flag=True, help="Displays all entries' names in the config file.")
   @click.option('-c', '--conf', metavar='PATH', type=str, help="Overrides the configuration with the one given.")
   @click.argument("name", required=False)
 
-  def cli(name, secret, qr, q, add, listing, conf):
-    """Totpy - CLI TOTP generator and managemet tool"""
+  def cli(name, secret, qr, q, add, listing, conf, remove):
+    """Totpy - CLI TOTP generator and management tool"""
     if listing:
       t = Totpy(conf)
       click.echo(t.itemList())
@@ -139,6 +148,10 @@ def main():
       else:
         if not secret or not qr:
           click.echo("Missing argument: secret or qr")
+    elif remove:
+      t = Totpy(conf)
+      t.removeSecret(name)
+      click.echo("%s removed suscessfully" % (name))
     elif secret:
       t = Totp(secret)
       token = t.getTotpToken()
