@@ -5,7 +5,7 @@ def description():
 
 setup(
     name='totpy',
-    version='0.2.0',
+    version='0.2.1',
     author='Jorge García',
     author_email='jorgegarciadev@icloud.com',
     description='Totpy - CLI TOTP generator and management tool',
