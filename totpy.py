@@ -150,7 +150,7 @@ def main():
           click.echo("Missing argument: secret or qr")
     elif remove:
       t = Totpy(conf)
-      t.removeSecret(name)
+      t.removeSecret(remove)
       click.echo("%s removed suscessfully" % (name))
     elif secret:
       t = Totp(secret)
