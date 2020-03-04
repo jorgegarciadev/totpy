@@ -111,6 +111,7 @@ class Totpy(Base):
       if name == item:
         self.config.pop(name)
         self.saveConfiguration()
+        return 1
 
   def getQr(self, name):
     for item in self.config:
