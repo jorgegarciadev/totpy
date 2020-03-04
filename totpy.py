@@ -152,7 +152,7 @@ def main():
     elif remove:
       t = Totpy(conf)
       t.removeSecret(remove)
-      click.echo("%s removed suscessfully" % (name))
+      click.echo("%s removed suscessfully" % (remove))
     elif secret:
       t = Totp(secret)
       token = t.getTotpToken()
