@@ -159,11 +159,17 @@ def main():
     elif qr:
       t = Totpy(conf)
       qr = t.getQr(qr)
-      click.echo(qr)
+      if qr:
+        click.echo(qr)
+      else:
+        click.echo("No entry with name %s in configuration file" % (qr))
     elif name:
       t = Totpy(conf)
       token = t.getTotpTokenByName(name)
-      click.echo(token)
+      if token:
+        click.echo(token)
+      else:
+        click.echo("No entry with name %s in configuration file" % (qr))
     else:
       ctx=click.get_current_context(silent=True)
       click.echo(ctx.get_help())
