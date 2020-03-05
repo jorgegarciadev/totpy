@@ -13,6 +13,8 @@ Totpy requires the follow packages:
 - pypng 0.0.20 ([https://pypng.readthedocs.io/en/latest/](https://pypng.readthedocs.io/en/latest/))
 - PyQRCode 1.2.1 ([https://pythonhosted.org/PyQRCode/](https://pythonhosted.org/PyQRCode/) )
 - pyzbar 0.1.8 ([https://github.com/NaturalHistoryMuseum/pyzbar/](https://github.com/NaturalHistoryMuseum/pyzbar/) )
+- pyperclip 1.7.0 ([https://github.com/asweigart/pyperclip])
+
 
 Totpy can be installed from this repository using pip:
 
@@ -82,6 +84,19 @@ Generates a TOTP token for the given secret key.
 ```
 $ totpy -s JBSWY3DPEHPK3PXP
 235467
+```
+
+
+### ```--copy```
+
+Copies the TOTP token to the clipboard.
+
+```
+$ totpy --copy -s JBSWY3DPEHPK3PXP
+235467
+
+$ totpy --copy granada
+099299
 ```
 
 
