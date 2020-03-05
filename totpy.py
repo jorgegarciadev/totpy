@@ -116,10 +116,18 @@ class Totpy(Base):
   def getQr(self, name):
     for item in self.config:
       if name == item:
-        qr = pyqrcode.create(self.config[name]["secret"])
+        otpauth = "otpauth://totp/%s?secret=%s" % (name, self.config[name]["secret"])
+        qr = pyqrcode.create(otpauth)
         return qr.terminal()
 
+
+
 def main():
+
+  def copyToken(token):
+    import pyperclip
+    pyperclip.copy(token)
+
   CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
   @click.command(context_settings=CONTEXT_SETTINGS)
@@ -130,10 +138,12 @@ def main():
   @click.option('-q', type=str, metavar='PATH', help="Used with --add. Path to the QR code png image.")
   @click.option('-l', '--list', 'listing', is_flag=True, help="Displays all entries' names in the config file.")
   @click.option('-c', '--conf', metavar='PATH', type=str, help="Overrides the configuration with the one given.")
+  @click.option('--copy', is_flag=True, help='Copies the TOTP token to the clipboard.')
   @click.argument("name", required=False)
 
-  def cli(name, secret, qr, q, add, listing, conf, remove):
+  def cli(name, secret, qr, q, add, listing, conf, remove, copy):
     """Totpy - CLI TOTP generator and management tool"""
+
     if listing:
       t = Totpy(conf)
       click.echo(t.itemList())
@@ -157,6 +167,8 @@ def main():
       t = Totp(secret)
       token = t.getTotpToken()
       click.echo(token)
+      if copy:
+        copyToken(token)
     elif qr:
       t = Totpy(conf)
       qr = t.getQr(qr)
@@ -169,6 +181,8 @@ def main():
       token = t.getTotpTokenByName(name)
       if token:
         click.echo(token)
+        if copy:
+          copyToken(token)
       else:
         click.echo("No entry with name %s in configuration file" % (qr))
     else:
