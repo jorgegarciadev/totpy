@@ -19,7 +19,8 @@ setup(
         'Pillow==7.0.0',
         'Pypng==0.0.20',
         'PyQRCode==1.2.1',
-        'pyzbar==0.1.8'
+        'pyzbar==0.1.8',
+        'pyperclip==1.7.0'
     ],
     entry_points={
         'console_scripts': {
