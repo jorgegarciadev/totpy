@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import hmac, base64, struct, hashlib, time
-import os, json
+import os, json, re
 import pyqrcode
 from pyzbar import pyzbar
 from PIL import Image
@@ -102,8 +102,11 @@ class Totpy(Base):
     self.saveConfiguration()
 
   def addSecretQr(self, name, image):
+    # otpauth://totp/test?secret=JBSWY3DPEHPK3PXP&issuer=jorgegarciadev
     qr = pyzbar.decode(Image.open(image))
-    secret = qr[0][0].decode("utf-8")
+    otpauth = qr[0][0].decode("utf-8")
+    pattern = "\?(secret=.+)&"
+    secret = re.findall(pattern, otpauth)[0].split('=')[1]
     self.addSecret(name, secret)
 
   def removeSecret(self, name):
