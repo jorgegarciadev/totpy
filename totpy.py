@@ -8,6 +8,7 @@ from PIL import Image
 import click
 
 BASE = "/.config/totpy/"
+VERSION = "0.3.1"
 
 class Totp(object):
   """docstring for Totpy"""
@@ -141,13 +142,15 @@ def main():
   @click.option('-q', type=str, metavar='PATH', help="Used with --add. Path to the QR code png image.")
   @click.option('-l', '--list', 'listing', is_flag=True, help="Displays all entries' names in the config file.")
   @click.option('-c', '--conf', metavar='PATH', type=str, help="Overrides the configuration with the one given.")
+  @click.option('-v', '--version', is_flag=True, help="Print the Totpy version number.")
   @click.option('--copy', is_flag=True, help='Copies the TOTP token to the clipboard.')
   @click.argument("name", required=False)
 
-  def cli(name, secret, qr, q, add, listing, conf, remove, copy):
+  def cli(name, secret, qr, q, add, listing, conf, remove, copy, version):
     """Totpy - CLI TOTP generator and management tool"""
-
-    if listing:
+    if version:
+      print("Totpy", VERSION)
+    elif listing:
       t = Totpy(conf)
       click.echo(t.itemList())
     elif add: 
